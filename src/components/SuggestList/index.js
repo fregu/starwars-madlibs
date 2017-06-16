@@ -13,7 +13,7 @@ class SuggestList extends Component {
   renderSuggestion (result) {
     let className = 'SuggestList-item' + (this.props.activeResult && this.props.activeResult.id === result.id ? ' is-active': '');
     return (
-      <li className={className} key={`item-${result.id}`} onClick={this.props.onClick}>{result.name}</li>
+      <li className={className} key={`item-${result.id}`} onClick={this.props.onClick.bind(this, result)}>{result.name}</li>
     )
   }
 

@@ -8,7 +8,7 @@ import * as actions from './actions';
 const initialState = {
   searchTerm: '',
   suggestions: [],
-  characterList: [],
+  itemList: [],
   isLoading: false
 };
 
@@ -17,16 +17,16 @@ const mapStateToProps = (state) => {
   return {
     searchTerm: state.searchTerm,
     suggestions: state.suggestions,
-    characterList: state.characterList,
+    itemList: state.itemList,
     isLoading: state.isLoading
   };
 };
 
 const session = createSession({
-  ns: 'mycharacters',
+  ns: 'myitems',
   selectState (state) {
     return {
-      characterList: state.characterList
+      itemList: state.characterList
     };
   },
   onLoad (storedState, dispatch) {

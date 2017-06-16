@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SearchField from '../SearchField';
 import SuggestList from '../SuggestList';
+import './index.css';
 
 class SearchForm extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      searchTerm: this.props.searchTerm || '',
       results: this.props.suggestions || [],
       activeIndex: 0
     };
@@ -16,26 +16,27 @@ class SearchForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onKeyup = this.onKeyup.bind(this);
+    this.onBlur = this.onBlur.bind(this);
     this.changeActiveResult = this.changeActiveResult.bind(this);
 
   }
 
   onChange (event) {
+    event.preventDefault();
     const searchTerm = event.target.value;
 
-    this.setState({
-      searchTerm
-    });
-
-    this.props.searchCharacters(searchTerm);
+    this.props.search(searchTerm, this.props.searchType);
   }
 
   onSubmit (event) {
     event.preventDefault();
-    this.props.addCharacter(this.state.activeObj);
+    this.props.addItem(this.state.activeObj, this.props.searchType);
   }
 
-  onClick (event) {}
+  onClick (item) {
+    this.props.addItem(item, this.props.searchType);
+  }
+
   onKeyup (event) {
     switch (event.keyCode) {
       case 40: // Down
@@ -48,6 +49,10 @@ class SearchForm extends Component {
         break;
       default:
     }
+  }
+
+  onBlur (event) {
+
   }
 
   changeActiveResult (direction) {
@@ -66,9 +71,9 @@ class SearchForm extends Component {
 
   render () {
     return (
-      <form className='FormField' onSubmit={this.onSubmit}>
-        <SearchField onKeyup={this.onKeyup} searchTerm={this.state.searchTerm} onChange={this.onChange} />
-        <SuggestList onClick={this.onClick} activeResult={this.state.activeObj} searchTerm={this.state.searchTerm} results={this.props.suggestions} />
+      <form className='SearchForm' onSubmit={this.onSubmit}>
+        <SearchField label={this.props.label} onBlur={this.onBlur} onKeyup={this.onKeyup} searchTerm={this.props.searchTerm} onChange={this.onChange} />
+        <SuggestList onClick={this.onClick} activeResult={this.state.activeObj} searchTerm={this.props.searchTerm} results={this.props.suggestions} />
       </form>
     );
   }
@@ -76,10 +81,12 @@ class SearchForm extends Component {
 
 SearchForm.propTypes = {
   searchTerm: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   suggestions: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  searchCharacters: PropTypes.func.isRequired,
-  addCharacter: PropTypes.func.isRequired
+  search: PropTypes.func.isRequired,
+  addItem: PropTypes.func.isRequired,
+  searchType: PropTypes.string
 };
 
 export default SearchForm;

@@ -29,7 +29,7 @@ const loadingReducer = (state = false, action) => {
   }
 };
 
-const characterListReducer = (state = [], action) => {
+const itemListReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_TO_LIST':
       const inList = state.filter(item => {
@@ -41,15 +41,28 @@ const characterListReducer = (state = [], action) => {
       }
 
       action.item.timestamp = new Date();
+
       return [...state, action.item];
+
     case 'REMOVE_FROM_LIST':
       return state.filter(item => {
         return item.id !== action.item.id;
       });
+
+    case 'UPDATE_ITEM':
+      return state.map(item => {
+        if (item.id === action.item.id) {
+          return action.item;
+        }
+        return item;
+      });
+
     case 'SET_LIST':
       return action.list;
+
     case 'LOAD_STORED_STATE':
       return action.storedState.characterList;
+
     default:
       return state;
   }
@@ -59,5 +72,5 @@ export default combineReducers({
   suggestions: autocompleteReducer,
   searchTerm: searchTermReducer,
   isLoading: loadingReducer,
-  characterList: characterListReducer
+  itemList: itemListReducer
 });

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Character from '../Character';
+import Vehicle from '../Vehicle';
 
 class MyCharacters extends Component {
   constructor (props) {
@@ -12,28 +13,34 @@ class MyCharacters extends Component {
     console.log(event);
   }
 
-  renderList (characters) {
-    return characters.length ? (
+  renderList (items) {
+    return items.length ? (
       <ul className='MyCharacters-list'>
-        {characters.map(character => (
-          <Character key={character.id} data={character} removeCharacter={this.props.removeCharacter} />
-        ))}
+        {items.map(item => {
+          if (item.type === 'people') {
+            return (<Character key={item.id} data={item} removeItem={this.props.removeItem} />);
+          } else if (item.type === 'starships' || item.type === 'vehicles') {
+            return (<Vehicle key={item.id} data={item} removeItem={this.props.removeItem} />);
+          } else {
+            return null;
+          }
+        })}
       </ul>
-    ) : (<p>Min lista är ännu tom</p>);
+    ) : null;
   }
 
   render () {
     return (
       <div className='MyCharacters'>
-        {this.renderList(this.props.characterList)}
+        {this.renderList(this.props.itemList)}
       </div>
     );
   }
 }
 
 MyCharacters.propTypes = {
-  characterList: PropTypes.array.isRequired,
-  removeCharacter: PropTypes.func.isRequired
+  itemList: PropTypes.array.isRequired,
+  removeItem: PropTypes.func.isRequired
 }
 
 export default MyCharacters;

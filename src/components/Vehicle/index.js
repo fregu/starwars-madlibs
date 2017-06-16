@@ -1,11 +1,10 @@
 import React from 'react';
 
-export default function Character (props) {
+export default function Vehicle (props) {
   function onClick() {
     props.removeItem(props.data);
   }
-
-  const {timestamp, name, species, homeworld} = props.data;
+  const {timestamp, name} = props.data;
   const months = ['januari', 'februari', 'mars', 'april', 'maj', 'juni', 'juli', 'augisti', 'september', 'oktober', 'november', 'december'];
 
   const hour = timestamp.getHours();
@@ -15,12 +14,10 @@ export default function Character (props) {
   const year = timestamp.getFullYear();
 
 
-  return props.data ? (
-    <div className='Character' onClick={onClick}>
+  return (
+    <div className='Vehicle' onClick={onClick}>
       <strong>{name}</strong>
-      <em>{species.name ? species.name : ''}</em>
-      <em>{homeworld.name ? homeworld.name : ''}</em>
       <em>{`${hour < 10 ? '0': ''}${hour}:${minutes < 10 ? '0': ''}${minutes} ${day} ${month} ${year}`}</em>
     </div>
-  ) : null;
+  )
 }

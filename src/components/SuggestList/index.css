@@ -1,6 +1,15 @@
 .SuggestList {}
-.SuggestList-list {}
-.SuggestList-item {}
+.SuggestList-list {
+  list-style: none;
+}
+.SuggestList-item {
+  margin: 0;
+  padding: 0.5em;
+  border: 1px dashed;
+}
 .SuggestList-item.is-active {
   color: blue;
+  border-style: solid;
+  background-color: var(--color-yellow);
+  color: #000;
 }
