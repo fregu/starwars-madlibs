@@ -16,9 +16,7 @@ class SearchForm extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onClick = this.onClick.bind(this);
     this.onKeyup = this.onKeyup.bind(this);
-    this.onBlur = this.onBlur.bind(this);
     this.changeActiveResult = this.changeActiveResult.bind(this);
-
   }
 
   onChange (event) {
@@ -45,14 +43,8 @@ class SearchForm extends Component {
       case 38: // Up
         this.changeActiveResult(-1);
         break;
-      case 13: // Escape
-        break;
       default:
     }
-  }
-
-  onBlur (event) {
-
   }
 
   changeActiveResult (direction) {
@@ -72,7 +64,7 @@ class SearchForm extends Component {
   render () {
     return (
       <form className='SearchForm' onSubmit={this.onSubmit}>
-        <SearchField label={this.props.label} onBlur={this.onBlur} onKeyup={this.onKeyup} searchTerm={this.props.searchTerm} onChange={this.onChange} />
+        <SearchField label={this.props.label} placeholder={this.props.placeholder} onKeyup={this.onKeyup} searchTerm={this.props.searchTerm} onChange={this.onChange} isLoading={this.props.isLoading}/>
         <SuggestList onClick={this.onClick} activeResult={this.state.activeObj} searchTerm={this.props.searchTerm} results={this.props.suggestions} />
       </form>
     );
@@ -82,6 +74,7 @@ class SearchForm extends Component {
 SearchForm.propTypes = {
   searchTerm: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
   suggestions: PropTypes.array.isRequired,
   isLoading: PropTypes.bool.isRequired,
   search: PropTypes.func.isRequired,

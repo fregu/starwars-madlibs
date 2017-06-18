@@ -1,0 +1,37 @@
+.Item-title {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 0.75em;
+}
+.Item-details {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.Item-detail {
+  flex: 1 1 20%;
+  box-shadow: 0 0 0 1px;
+  margin: 0;
+  padding: 5px;
+}
+
+.Item-detailTitle {
+  font-size: 8px;
+  display: block;
+  white-space: nowrap;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.Item-detailValue {
+  font-size: 14px;
+  display: block;
+  margin: 0;
+  font-weight: 400;
+}
+
+@media (min-width: 500px) {
+  .Item-detail {
+    padding: 10px;
+  }
+}

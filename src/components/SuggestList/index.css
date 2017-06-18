@@ -1,15 +1,26 @@
 .SuggestList {}
+
 .SuggestList-list {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
+
 .SuggestList-item {
   margin: 0;
   padding: 0.5em;
   border: 1px dashed;
+  text-align: left;
 }
+
 .SuggestList-item.is-active {
-  color: blue;
   border-style: solid;
+  border-color: var(--color-orange);
   background-color: var(--color-yellow);
   color: #000;
+}
+
+.SuggestList-termMatch {
+  font-style: normal;
+  color: #fff;
 }

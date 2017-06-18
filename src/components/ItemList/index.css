@@ -1,0 +1,12 @@
+.ItemList {
+
+}
+.ItemList-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ItemList-item {
+  margin: 0 0 1em;
+}

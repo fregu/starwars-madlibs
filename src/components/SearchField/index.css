@@ -1,18 +1,107 @@
-.SearchField {}
+@keyframes dasharray-top {
+  from { transform: translateX( -500px ); }
+  to   { transform: translateX( 0 ); }
+}
+@keyframes dasharray-right {
+  from { transform: translateY( -500px ); }
+  to   { transform: translateY( 0 ); }
+}
+@keyframes dasharray-bottom {
+  from { transform: translateX( 0 ); }
+  to   { transform: translateX( -500px ); }
+}
+@keyframes dasharray-left {
+  from { transform: translateY( 0 ); }
+  to   { transform: translateY( -500px ); }
+}
+
+.SearchField {
+  font-size: 1.5em;
+}
 .SearchField-label {
   display: block;
   margin: 0 0 1em;
 }
+
+.SearchField-inputWrapper {
+  position: relative;
+}
+
 .SearchField-input {
   width: 100%;
   line-height: 2em;
-  font-size: 1.5em;
+  font-size: inherit;
   border: 0.05em dashed;
   color: inherit;
   background: none;
   padding: 0 0.5em;
 }
+
+.SearchField.is-loading .SearchField-input {
+  border-style: none;
+}
+
+.SearchField-input::placeholder {
+  color: var(--color-yellow);
+  font-weight: thin;
+  font-style: italic;
+  font-size: 0.5em;
+}
+
 .SearchField-input:focus {
   border-style: solid;
   outline: none;
+}
+
+.SearchField-LoaderBox {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.SearchField.is-loading .SearchField-LoaderBox {
+  display: block;
+}
+
+.SearchField-LoaderBoxTop,
+.SearchField-LoaderBoxBottom,
+.SearchField-LoaderBoxLeft,
+.SearchField-LoaderBoxRight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.SearchField-LoaderBoxTop {
+  border-top: 0.1em dashed #fff;
+  animation: dasharray-top 25s linear 0s infinite;
+  display: block;
+  width: 1000px;
+}
+.SearchField-LoaderBoxRight {
+  border-right: 0.1em dashed #fff;
+  animation: dasharray-right 25s linear 0s infinite;
+  display: block;
+  height: 1000px;
+}
+.SearchField-LoaderBoxBottom {
+  position: absolute;
+  bottom: 0;
+  border-bottom: 0.1em dashed #fff;
+  animation: dasharray-bottom 25s linear 0s infinite;
+  display: block;
+  width: 1000px;
+}
+.SearchField-LoaderBoxLeft {
+  border-left: 0.1em dashed #fff;
+  animation: dasharray-left 25s linear 0s infinite;
+  display: block;
+  height: 1000px;
 }

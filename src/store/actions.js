@@ -1,21 +1,21 @@
 /**
- ACTION TYPES WITH REDUCERS
- * SET_SEARCH_TERM
- * SET_SUGGESTIONS
- * SET_LOADING
- * REMOVE_LOADING
- * ADD_TO_LIST
- * REMOVE_FROM_LIST
- * SET_PLAYLIST
- **/
-
+ * Actions include:
+ * * search(): updating term, results by making a rest request to http://swapi.co/api
+ * * play(): Starts StarWars mode
+ * * stop(): Ends StarWars mode
+ * * reset(): Reset picked star wars references
+ * * setItemList(): Set itemList to something new
+ * * addItem(): Add a result to itemList
+ */
 import 'redux';
 import store from '../store';
 import requestAPI from '../helpers/requestAPI';
 let searchTimeout;
 
+let searchCounter = 0;
 export const search = (term, type = 'people') => {
   return (dispatch) => {
+    searchCounter += 1;
     dispatch({
       type: 'SET_SEARCH_TERM',
       term
@@ -37,6 +37,7 @@ export const search = (term, type = 'people') => {
     searchTimeout = setTimeout(()=> {
       const currentTerm = term;
       const currentType = type;
+      const currentSearchCount = searchCounter;
       dispatch({
         type: 'SET_LOADING'
       });
@@ -52,7 +53,7 @@ export const search = (term, type = 'people') => {
         });
 
         // Make sure the fetched results actually is for the current term
-        if (currentTerm === term) {
+        if (currentTerm === term && currentSearchCount === searchCounter) {
           dispatch({
             type: 'SET_SUGGESTIONS',
             results
@@ -67,6 +68,30 @@ export const search = (term, type = 'people') => {
     // Perform serach and dispatch, update result
   };
 };
+
+export const play = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'START_PLAYING'
+    });
+  }
+}
+
+export const stop = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'STOP_PLAYING'
+    });
+  }
+}
+export const reset = () => {
+  return (dispatch) => {
+    dispatch({
+      type: 'SET_LIST',
+      list: []
+    });
+  }
+}
 
 export const setItemList = (list) => {
   return (dispatch) => {
@@ -98,6 +123,10 @@ export const addItem = (item, type = 'people') => {
       type: 'SET_SEARCH_TERM',
       term: ''
     });
+    dispatch({
+      type: 'SET_SUGGESTIONS',
+      results: []
+    });
 
     if (type === 'people') {
       requestAPI(item.species[0]).then(result => {
@@ -115,14 +144,5 @@ export const addItem = (item, type = 'people') => {
         });
       });
     }
-  };
-}
-
-export const removeItem = (item) => {
-  return (dispatch) => {
-    dispatch({
-      type: 'REMOVE_FROM_LIST',
-      item
-    });
   };
 }

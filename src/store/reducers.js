@@ -44,11 +44,6 @@ const itemListReducer = (state = [], action) => {
 
       return [...state, action.item];
 
-    case 'REMOVE_FROM_LIST':
-      return state.filter(item => {
-        return item.id !== action.item.id;
-      });
-
     case 'UPDATE_ITEM':
       return state.map(item => {
         if (item.id === action.item.id) {
@@ -58,19 +53,28 @@ const itemListReducer = (state = [], action) => {
       });
 
     case 'SET_LIST':
-      return action.list;
-
-    case 'LOAD_STORED_STATE':
-      return action.storedState.characterList;
+      return action.list || state;
 
     default:
       return state;
   }
 };
 
+const playReducer = (state = false, action) => {
+  switch (action.type) {
+    case 'START_PLAYING':
+      return true;
+    case 'STOP_PLAYING':
+      return false;
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   suggestions: autocompleteReducer,
   searchTerm: searchTermReducer,
   isLoading: loadingReducer,
-  itemList: itemListReducer
+  itemList: itemListReducer,
+  isPlaying: playReducer,
 });

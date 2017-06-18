@@ -1,5 +1,8 @@
 import fetch from 'isomorphic-fetch';
 
+// REST fetch helper, making a promised request to any specified URL, and buildning
+// query parameters of options objects string values.
+// Chainable or use a callback with your prepared json
 export default function requestAPI (url, options = {}, callback) {
   let queryString = Object.keys(options).reduce((string, key) => {
     let value = options[key];
@@ -10,7 +13,6 @@ export default function requestAPI (url, options = {}, callback) {
     return string;
   }, '');
 
-  console.log('fetch', url, queryString);
   const xhr = fetch(url + queryString).then(response => {
     if (response.status >= 400) {
       throw new Error('Bad response from server');
