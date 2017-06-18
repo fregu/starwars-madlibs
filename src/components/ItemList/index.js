@@ -32,6 +32,6 @@ class ItemList extends Component {
 
 ItemList.propTypes = {
   itemList: PropTypes.array.isRequired
-}
+};
 
 export default ItemList;

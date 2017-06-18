@@ -64,7 +64,7 @@ class SearchForm extends Component {
   render () {
     return (
       <form className='SearchForm' onSubmit={this.onSubmit}>
-        <SearchField label={this.props.label} placeholder={this.props.placeholder} onKeyup={this.onKeyup} searchTerm={this.props.searchTerm} onChange={this.onChange} isLoading={this.props.isLoading}/>
+        <SearchField label={this.props.label} placeholder={this.props.placeholder} onKeyup={this.onKeyup} searchTerm={this.props.searchTerm} onChange={this.onChange} isLoading={this.props.isLoading} />
         <SuggestList onClick={this.onClick} activeResult={this.state.activeObj} searchTerm={this.props.searchTerm} results={this.props.suggestions} />
       </form>
     );

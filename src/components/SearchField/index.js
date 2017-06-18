@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import guid from '../../helpers/guid'
+import guid from '../../helpers/guid';
 import './index.css';
-
 
 class SearchField extends Component {
   constructor (props) {
@@ -27,7 +26,8 @@ class SearchField extends Component {
     const className = classNames(
       'SearchField',
       {'is-loading': this.props.isLoading}
-    )
+    );
+
     return (
       <div className={className}>
         <label className='SearchField-label' htmlFor={id} aria-live='assertive'>{this.props.label}</label>

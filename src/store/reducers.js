@@ -69,12 +69,12 @@ const playReducer = (state = false, action) => {
     default:
       return state;
   }
-}
+};
 
 export default combineReducers({
   suggestions: autocompleteReducer,
   searchTerm: searchTermReducer,
   isLoading: loadingReducer,
   itemList: itemListReducer,
-  isPlaying: playReducer,
+  isPlaying: playReducer
 });

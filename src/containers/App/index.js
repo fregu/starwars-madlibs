@@ -42,9 +42,9 @@ class App extends Component {
     switch (this.props.itemList.length) {
       case 0:
       case 1:
-        return placeholderPeople[getRandomInt(0, 3)]
+        return placeholderPeople[getRandomInt(0, 3)];
       case 2:
-        return placeholderVehicles[getRandomInt(0, 3)]
+        return placeholderVehicles[getRandomInt(0, 3)];
       default:
         return '';
     }
@@ -64,7 +64,7 @@ class App extends Component {
       default:
         genderString = 'its';
     }
-    const car1 = this.props.itemList[2]
+    const car1 = this.props.itemList[2];
     return [
       `Here comes ${char1.name} tjolahopp tjolahej tjolahoppsan-sa.`,
       `Here comes ${char1.name}, yes here I actually come.`,
@@ -102,15 +102,15 @@ class App extends Component {
           </div>
         </section>
         {this.props.itemList.length > 2 && !this.props.isPlaying ? (
-          <div className="App-actions">
-            <button className="App-action" autoFocus onClick={this.props.play}>Play</button>
-            <button className="App-action" onClick={this.props.reset}>Reset</button>
+          <div className='App-actions'>
+            <button className='App-action' autoFocus onClick={this.props.play}>Play</button>
+            <button className='App-action' onClick={this.props.reset}>Reset</button>
           </div>) : null}
         {this.props.isPlaying ? (<StarWars content={this.renderContent()} stop={this.props.stop} />) : null}
       </div>
     );
   }
-};
+}
 
 App.propTypes = {
   searchTerm: PropTypes.string.isRequired,

@@ -11,7 +11,7 @@ class SuggestList extends Component {
     this.highlightSearchTerm = this.highlightSearchTerm.bind(this);
   }
 
-  highlightSearchTerm(name) {
+  highlightSearchTerm (name) {
     const searchTermRegEx = new RegExp(this.props.searchTerm, 'i');
 
     const match = name.match(searchTermRegEx);
@@ -24,16 +24,16 @@ class SuggestList extends Component {
       <span>
         {splitArr.map((part, index) => {
           if (index === 1) {
-            return (<em className='SuggestList-termMatch' key='match'>{part}</em>)
+            return (<em className='SuggestList-termMatch' key='match'>{part}</em>);
           }
-          return part
+          return part;
         })}
       </span>
     );
   }
 
   renderSuggestion (result) {
-    const className = 'SuggestList-item' + (this.props.activeResult && this.props.activeResult.id === result.id ? ' is-active': '');
+    const className = 'SuggestList-item' + (this.props.activeResult && this.props.activeResult.id === result.id ? ' is-active' : '');
 
     // Corner case since vehicles searches both model and name.
     const innerText = result.type === 'vehicles' && result.name !== result.model ? `${result.name} - ${result.model}` : result.name;
@@ -45,7 +45,7 @@ class SuggestList extends Component {
   renderResults (results) {
     return results.length && this.props.searchTerm.length ? (
       <ul className='SuggestList-list'>
-      {results.map(this.renderSuggestion)}
+        {results.map(this.renderSuggestion)}
       </ul>
     ) : null;
   }

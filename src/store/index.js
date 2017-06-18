@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createStore, bindActionCreators, applyMiddleware} from 'redux';
+import { createStore, bindActionCreators, applyMiddleware } from 'redux';
 import { createSession } from 'redux-session';
 import thunk from 'redux-thunk';
 import reducers from './reducers';
@@ -33,11 +33,12 @@ const session = createSession({
     };
   },
   onLoad (storedState, dispatch) {
-    if (storedState.itemList)
-    dispatch({ type: 'SET_LIST', list: storedState.itemList })
+    if (storedState.itemList) {
+      dispatch({ type: 'SET_LIST', list: storedState.itemList });
+    }
   },
   throttle: 3000 // update storage once every 3 seconds
- });
+});
 
 // Make actions avalable as props
 const mapDispatchToProps = (dispatch) => {

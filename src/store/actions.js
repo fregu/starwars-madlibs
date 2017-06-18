@@ -34,7 +34,7 @@ export const search = (term, type = 'people') => {
     }
 
     clearTimeout(searchTimeout);
-    searchTimeout = setTimeout(()=> {
+    searchTimeout = setTimeout(() => {
       const currentTerm = term;
       const currentType = type;
       const currentSearchCount = searchCounter;
@@ -74,24 +74,25 @@ export const play = () => {
     dispatch({
       type: 'START_PLAYING'
     });
-  }
-}
+  };
+};
 
 export const stop = () => {
   return (dispatch) => {
     dispatch({
       type: 'STOP_PLAYING'
     });
-  }
-}
+  };
+};
+
 export const reset = () => {
   return (dispatch) => {
     dispatch({
       type: 'SET_LIST',
       list: []
     });
-  }
-}
+  };
+};
 
 export const setItemList = (list) => {
   return (dispatch) => {
@@ -100,7 +101,7 @@ export const setItemList = (list) => {
       list
     });
   };
-}
+};
 
 export const addItem = (item, type = 'people') => {
   return (dispatch) => {
@@ -145,4 +146,4 @@ export const addItem = (item, type = 'people') => {
       });
     }
   };
-}
+};
