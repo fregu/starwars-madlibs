@@ -1,4 +1,4 @@
-# StarWars mad libs - Sing along edition
+# StarWars mad libs - Sing along edition (music not included)
 
 ## Installation
 ```bash

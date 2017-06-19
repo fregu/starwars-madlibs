@@ -35,6 +35,7 @@
   color: inherit;
   background: none;
   padding: 0 0.5em;
+  appearance: none;
 }
 
 .SearchField.is-loading .SearchField-input {
