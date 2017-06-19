@@ -130,14 +130,14 @@ export const addItem = (item, type = 'people') => {
     });
 
     if (type === 'people') {
-      requestAPI(item.species[0]).then(result => {
+      requestAPI(item.species[0].replace(/http:/, '')).then(result => {
         item.species = result;
         dispatch({
           type: 'UPDATE_ITEM',
           item
         });
       });
-      requestAPI(item.homeworld).then(result => {
+      requestAPI(item.homeworld.replace(/http:/, '')).then(result => {
         item.homeworld = result;
         dispatch({
           type: 'UPDATE_ITEM',
