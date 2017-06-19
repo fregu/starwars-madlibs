@@ -2,9 +2,6 @@
   "name": "autosuggest",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "8.x"
-  },
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^15.6.1",
@@ -12,10 +9,10 @@
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
     "redux-session": "^1.0.3",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "react-scripts": "1.0.7",
   },
   "devDependencies": {
-    "react-scripts": "1.0.7",
     "semistandard": "^11.0.0"
   },
   "scripts": {
