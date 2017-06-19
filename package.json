@@ -2,6 +2,9 @@
   "name": "autosuggest",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "8.x"
+  },
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^15.6.1",
