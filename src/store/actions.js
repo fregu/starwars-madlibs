@@ -42,7 +42,7 @@ export const search = (term, type = 'people') => {
         type: 'SET_LOADING'
       });
 
-      return requestAPI('//swapi.co/api/' + currentType, {
+      return requestAPI('//swapi.co/api/' + currentType + '/', {
         search: currentTerm,
         format: 'json'
       }).then(response => {
